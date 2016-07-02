@@ -1,0 +1,40 @@
+<div>
+	many cool db - <a href="{{ path_for('home') }}">Home</a>
+</div><br>
+
+<div>
+{% if querys %}
+	{% for query in querys %}
+		* {{ query.id }}, {{ query.namn }}, {{ query.text }}, <a href="{{ path_for('delete.post', {id: query.id}) }}">delete</a><br>
+	{% endfor %}
+{% endif %}
+
+{% if querys is empty %}
+	<h1>much empty db</h1>
+{% endif %}
+</div>
+
+<hr>
+{% if flash.getMessages %}
+	{% if flash.getMessages('warning') %}
+		{{ flash.getMessage('warning') | first }}
+	{% endif %}
+	{% if flash.getMessages('success') %}
+		{{ flash.getMessage('success') | first }}
+	{% endif %}
+{% endif %}
+
+<h2>Add data to DB</h2>
+<form method="POST" action="/test">
+	<label>Name</label>
+	<input type="text" name="namn" placeholder="name" value="{{ old.namn }}"><br>
+		{% if errors.namn %}
+    	    <span class="help-block">{{ errors.namn | first }}</span><br>
+    	{% endif %}
+	<label>Text</label>
+	<input type="text" name="text" placeholder="text" value="{{ old.text }}"><br>
+		{% if errors.text %}
+    	    <span class="help-block">{{ errors.text | first }}</span><br>
+    	{% endif %}
+	<input type="submit" value="Send">
+</form>
