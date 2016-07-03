@@ -4,9 +4,11 @@
 
 <div>
 {% if querys %}
+	<ul>
 	{% for query in querys %}
-		* {{ query.id }}, {{ query.namn }}, {{ query.text }}, <a href="{{ path_for('delete.post', {id: query.id}) }}">delete</a><br>
+		<li>{{ query.id }}, {{ query.namn }}, {{ query.text }}, <a href="{{ path_for('delete.post', {id: query.id}) }}">delete</a></li>
 	{% endfor %}
+	</ul>
 {% endif %}
 
 {% if querys is empty %}

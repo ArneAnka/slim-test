@@ -3,15 +3,18 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use Respect\Validation\Validator as v;
 
+/**
+ * throw new \Slim\Exception\NotFoundException($request, $response);
+ */
+
 $app->get('/', function (Request $request, Response $response) {
-    $response->getBody()->write("Hello mister ( ͡° ͜ʖ ͡°)");
-    return $response;
+    return $this->view->render($response, 'home.twig');
 })->setName('home');
 
 $app->get('/test', function (Request $request, Response $response) {
 	$query = $this->pdo->from('info');
 
-	return $this->view->render($response, 'index.twig', ['querys' => $query]);
+	return $this->view->render($response, 'test.twig', ['querys' => $query]);
 })->setName('test');
 
 $app->post('/test', function (Request $request, Response $response){
