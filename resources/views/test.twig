@@ -4,11 +4,12 @@
 
 <div>
 {% if querys %}
-	<ul>
 	{% for query in querys %}
-		<li>{{ query.id }}, {{ query.namn }}, {{ query.text }}, <a href="{{ path_for('delete.post', {id: query.id}) }}">delete</a></li>
+		<hr>
+		<div>ID: {{ query.id }}, Name: {{ query.namn }}, Time: {{ diffForHumans(query.created_at) }}</div>
+		<div>Content: {{ query.text }}</div>
+		<div><a href="{{ path_for('delete.post', {id: query.id}) }}">delete</a></div>
 	{% endfor %}
-	</ul>
 {% endif %}
 
 {% if querys is empty %}
@@ -26,7 +27,7 @@
 	{% endif %}
 {% endif %}
 
-<h2>Add data to DB</h2>
+<h2>Insert message into DB</h2>
 <form method="POST" action="/test">
 	<label>Name</label>
 	<input type="text" name="namn" placeholder="name" value="{{ old.namn }}" autocomplete="off"><br>
@@ -34,7 +35,7 @@
     	    <span class="help-block">{{ errors.namn | first }}</span><br>
     	{% endif %}
 	<label>Text</label>
-	<input type="text" name="text" placeholder="text" value="{{ old.text }}" autocomplete="off"><br>
+	<textarea name="text" placeholder="text">{{ old.text }}</textarea><br>
 		{% if errors.text %}
     	    <span class="help-block">{{ errors.text | first }}</span><br>
     	{% endif %}

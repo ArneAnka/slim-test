@@ -43,6 +43,10 @@ $container['flash'] = function ($c) {
 $container['validator'] = function ($c) {
     return new \App\Validation\Validator;
 };
+
+/**
+* Middleware
+*/
 $app->add(new App\Middleware\OldInputMiddleware($container));
 $app->add(new App\Middleware\ValidationErrorsMiddleware($container));
 $checkProxyHeaders = true; // Note: Never trust the IP address for security processes!
@@ -61,6 +65,7 @@ $container['view'] = function ($c) {
     ]);
 
     // Instantiate and add Slim specific extension
+    $view->addExtension(new App\TwigExtension\diffForHumans());
     $view->addExtension(new \Slim\Views\TwigExtension(
         $c->router,
         $c->request->getUri(),

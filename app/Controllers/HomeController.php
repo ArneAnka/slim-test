@@ -5,7 +5,6 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use Respect\Validation\Validator as v;
 
-
 class HomeController extends Controller
 {
 	/**
@@ -33,6 +32,7 @@ class HomeController extends Controller
 		$data = $request->getParsedBody();
 		$values = ['namn' => $data['namn'],
 				   'text' => $data['text'],
+				   'created_at' => (new \DateTime())->format('Y-m-d H:i:s'),
 				   'ip_adress' => $request->getAttribute('ip_address')];
 
 	    /**
@@ -40,7 +40,7 @@ class HomeController extends Controller
 	    */
 	    $validation = $this->validator->validate($request, [
 	        'text' => v::notEmpty(),
-	        'namn' => v::notEmpty()::noWhitespace()::alpha()
+	        'namn' => v::notEmpty()::alpha()
 	                ]);
 
 	    /**
@@ -52,9 +52,12 @@ class HomeController extends Controller
 	        return $response->withRedirect($this->router->pathFor('test'));
 	    }
 
+	    /**
+	    * If validation success, then insert $values ($data) to DB
+	    */
 		$query = $this->pdo->insertInto('info')->values($values)->execute();
 
-		// Set flash message fon success
+		// Set flash message for success, and unset the input fields
 	    $this->flash->addMessage('success', 'Success!');
 	    unset($_SESSION['old']);
 
