@@ -29,12 +29,12 @@
 <h2>Add data to DB</h2>
 <form method="POST" action="/test">
 	<label>Name</label>
-	<input type="text" name="namn" placeholder="name" value="{{ old.namn }}"><br>
+	<input type="text" name="namn" placeholder="name" value="{{ old.namn }}" autocomplete="off"><br>
 		{% if errors.namn %}
     	    <span class="help-block">{{ errors.namn | first }}</span><br>
     	{% endif %}
 	<label>Text</label>
-	<input type="text" name="text" placeholder="text" value="{{ old.text }}"><br>
+	<input type="text" name="text" placeholder="text" value="{{ old.text }}" autocomplete="off"><br>
 		{% if errors.text %}
     	    <span class="help-block">{{ errors.text | first }}</span><br>
     	{% endif %}

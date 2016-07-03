@@ -45,6 +45,9 @@ $container['validator'] = function ($c) {
 };
 $app->add(new App\Middleware\OldInputMiddleware($container));
 $app->add(new App\Middleware\ValidationErrorsMiddleware($container));
+$checkProxyHeaders = true; // Note: Never trust the IP address for security processes!
+$trustedProxies = ['10.0.0.1', '10.0.0.2']; // Note: Never trust the IP address for security processes!
+$app->add(new RKA\Middleware\IpAddress($checkProxyHeaders, $trustedProxies));
 
 
 /**
@@ -67,6 +70,13 @@ $container['view'] = function ($c) {
     $view['flash'] = $c->flash;
 
     return $view;
+};
+
+/**
+* Attach controllers to $container
+*/
+$container['HomeController'] = function ($container) {
+    return new \App\Controllers\HomeController($container);
 };
 
 // Register routes
