@@ -3,6 +3,20 @@
 
 {% block content %}
   
-signin.twig
+<form method="POST" action="{{ path_for('signin.post') }}">
+	<label>Email</label><br>
+		{% if errors.user_email %}
+		    <span class="help-block" style="color:#f20000">{{ errors.user_email | first }}</span><br>
+		{% endif %}
+	<input type="email" name="user_email"><br>
+
+	<label>Password</label><br>
+		{% if errors.user_password %}
+		    <span class="help-block" style="color:#f20000">{{ errors.user_password | first }}</span><br>
+		{% endif %}
+	<input type="password" name="user_password"><br>
+	<input type="hidden" name="op" value="reg">
+	<input type="submit" value="Submit">
+</form>
 
 {% endblock %}

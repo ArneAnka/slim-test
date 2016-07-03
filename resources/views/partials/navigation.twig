@@ -1,7 +1,13 @@
-<div>
-	many cool internet site - <a href="{{ path_for('home') }}">Home</a> - 
+<div class="navigation">
+	many cool internet site<br>
+	<a href="{{ path_for('home') }}">home</a> - 
 	<a href="{{ path_for('crud') }}">crud</a> -
 	<a href="{{ path_for('signup') }}">sign-up</a> -
 	<a href="{{ path_for('signin') }}">sign-in</a>
-
 </div>
+
+<style>
+.navigation{
+margin-bottom: 10px;
+}
+</style>

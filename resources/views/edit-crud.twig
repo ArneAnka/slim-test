@@ -1,0 +1,18 @@
+{% extends 'template/app.twig' %}
+{% block title %}CRUDpage{% endblock %}
+
+{% block content %}
+
+{% include 'partials/flash.twig' %}
+
+<h2>Edit</h2>
+
+<form method="POST" action="{{ path_for('edit') }}">
+	<label>Text</label><br>
+	<textarea name="text" rows="5" cols="50">{{ query.text }}</textarea><br>
+	<input type="hidden" name="note_id" value="{{ query.note_id }}">
+	<input type="hidden" name="_METHOD" value="PUT">
+	<input type="submit" value="submit">
+</form>
+
+{% endblock %}
