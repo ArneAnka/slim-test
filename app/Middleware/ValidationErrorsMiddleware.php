@@ -14,6 +14,5 @@ class ValidationErrorsMiddleware extends Middleware
 
         $response = $next($request, $response);
         return $response;
-
     }
 }

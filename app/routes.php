@@ -25,7 +25,7 @@ $app->post('/test', function (Request $request, Response $response){
     */
     $validation = $this->validator->validate($request, [
         'text' => v::notEmpty(),
-        'namn' => v::notEmpty()
+        'namn' => v::notEmpty()::alpha()
                 ]);
 
     /**
@@ -41,6 +41,7 @@ $app->post('/test', function (Request $request, Response $response){
 
 	// Set flash message for next request
     $this->flash->addMessage('success', 'Success!');
+    unset($_SESSION['old']);
 
 	return $response->withRedirect($this->router->pathFor('test'));
 });
