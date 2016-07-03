@@ -83,6 +83,9 @@ $container['view'] = function ($c) {
 $container['HomeController'] = function ($container) {
     return new \App\Controllers\HomeController($container);
 };
+$container['AuthController'] = function ($container) {
+    return new \App\Controllers\AuthController($container);
+};
 
 // Register routes
 require __DIR__ . '/../app/routes.php';

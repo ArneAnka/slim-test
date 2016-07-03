@@ -5,6 +5,17 @@
  */
 
 $app->get('/', 'HomeController:index')->setName('home');
-$app->get('/test', 'HomeController:test')->setName('test');
-$app->post('/test', 'HomeController:postTest');
-$app->get('/test/{id:[0-9]+}', 'HomeController:deleteTest')->setName('delete.post');
+$app->get('/crud', 'HomeController:crud')->setName('crud');
+$app->post('/crud', 'HomeController:postCrud');
+$app->get('/crud/{id:[0-9]+}', 'HomeController:deleteCrud')->setName('delete.post');
+
+// $app->get('/u/{username}', function ($request, $response) {
+// //
+// });
+
+// $app->get('/r/{section}', function ($request, $response) {
+// //
+// });
+
+$app->get('/signin', 'AuthController:signin')->setName('signin');
+$app->get('/signup', 'AuthController:signup')->setName('signup');

@@ -18,17 +18,17 @@ class HomeController extends Controller
     /**
     * @return view
     */
-    public function test(Request $request, Response $response){
+    public function crud(Request $request, Response $response){
 		$query = $this->pdo->from('info');
 
-		return $this->view->render($response, 'test.twig', ['querys' => $query]);
+		return $this->view->render($response, 'crud.twig', ['querys' => $query]);
     }
 
     /**
     * Save a post to the DB
     * @return bool
     */
-    public function postTest(Request $request, Response $response){
+    public function postCrud(Request $request, Response $response){
 		$data = $request->getParsedBody();
 		$values = ['namn' => $data['namn'],
 				   'text' => $data['text'],
@@ -44,12 +44,12 @@ class HomeController extends Controller
 	                ]);
 
 	    /**
-	    * If the fields fail, then redirect back to test
+	    * If the fields fail, then redirect back to crud
 	    */
 	    if ($validation->failed()) 
 	    {
 	        $this->flash->addMessage('warning', 'Please fill all fields.');
-	        return $response->withRedirect($this->router->pathFor('test'));
+	        return $response->withRedirect($this->router->pathFor('crud'));
 	    }
 
 	    /**
@@ -61,7 +61,7 @@ class HomeController extends Controller
 	    $this->flash->addMessage('success', 'Success!');
 	    unset($_SESSION['old']);
 
-		return $response->withRedirect($this->router->pathFor('test'));
+		return $response->withRedirect($this->router->pathFor('crud'));
     }
 
     /**
@@ -70,8 +70,8 @@ class HomeController extends Controller
     *
     * @return bool
     */
-    public function deleteTest(Request $request, Response $response, $args){
+    public function deleteCrud(Request $request, Response $response, $args){
 		$query = $this->pdo->deleteFrom('info')->where('id', $args['id'])->execute();
-		return $response->withRedirect($this->router->pathFor('test'));
+		return $response->withRedirect($this->router->pathFor('crud'));
     }
 }

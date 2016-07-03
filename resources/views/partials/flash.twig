@@ -1,0 +1,9 @@
+ {% if flash.getMessages %}
+	{% if flash.getMessages('warning') %}
+		<span class="help-block" style="color:#f20000">{{ flash.getMessage('warning') | first }}</span>
+	{% endif %}
+	{% if flash.getMessages('success') %}
+		<span class="help-block" style="color:#00f200">{{ flash.getMessage('success') | first }}</span>
+	{% endif %}
+{% endif %}
+

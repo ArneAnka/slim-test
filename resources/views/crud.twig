@@ -1,7 +1,8 @@
-<div>
-	many cool db - <a href="{{ path_for('home') }}">Home</a>
-</div><br>
+{% extends 'template/app.twig' %}
+{% block title %}CRUDpage{% endblock %}
 
+{% block content %}
+  
 <div>
 {% if querys %}
 	{% for query in querys %}
@@ -18,26 +19,21 @@
 </div>
 
 <hr>
-{% if flash.getMessages %}
-	{% if flash.getMessages('warning') %}
-		{{ flash.getMessage('warning') | first }}
-	{% endif %}
-	{% if flash.getMessages('success') %}
-		{{ flash.getMessage('success') | first }}
-	{% endif %}
-{% endif %}
+	{% include 'partials/flash.twig' %}
 
 <h2>Insert message into DB</h2>
-<form method="POST" action="/test">
+<form method="POST" action="{{ path_for('crud') }}">
 	<label>Name</label>
 	<input type="text" name="namn" placeholder="name" value="{{ old.namn }}" autocomplete="off"><br>
 		{% if errors.namn %}
-    	    <span class="help-block">{{ errors.namn | first }}</span><br>
+    	    <span class="help-block" style="color:#f20000">{{ errors.namn | first }}</span><br>
     	{% endif %}
 	<label>Text</label>
-	<textarea name="text" placeholder="text">{{ old.text }}</textarea><br>
+	<textarea name="text" placeholder="text" rows="5" cols="50">{{ old.text }}</textarea><br>
 		{% if errors.text %}
-    	    <span class="help-block">{{ errors.text | first }}</span><br>
+    	    <span class="help-block" style="color:#f20000">{{ errors.text | first }}</span><br>
     	{% endif %}
 	<input type="submit" value="Send">
 </form>
+
+{% endblock %}
