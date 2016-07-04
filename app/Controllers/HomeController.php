@@ -95,7 +95,7 @@ class HomeController extends Controller
 	    if ($validation->failed()) 
 	    {
 	        $this->flash->addMessage('warning', 'Please fill all fields.');
-	        return $response->withRedirect($this->router->pathFor('crud'));
+	        return $response->withRedirect($this->router->pathFor('view', ['id' => $data['note_id']]));
 	    }
 
 	    /**
