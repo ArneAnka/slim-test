@@ -5,5 +5,8 @@
 	{% if flash.getMessages('success') %}
 		<span class="help-block" style="color:#00f200">{{ flash.getMessage('success') | first }}</span>
 	{% endif %}
+	{% if flash.getMessages('info') %}
+		<span class="help-block" style="color:#1200f6">{{ flash.getMessage('info') | first }}</span>
+	{% endif %}
 {% endif %}
 

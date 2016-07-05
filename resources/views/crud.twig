@@ -4,8 +4,9 @@
 {% block content %}
 
 {% include 'partials/flash.twig' %}
-
 <h2>Insert message into DB <small>(should be signed in area)</small></h2>
+<p>The name should ofc be the name the user signed up with.</p>
+
 <form method="POST" action="{{ path_for('new') }}">
 	<label>Name</label>
 	{# name ofc should be the signed-in user #}

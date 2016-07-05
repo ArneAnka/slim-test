@@ -39,7 +39,6 @@ $container['pdo'] = function ($container) {
 $container['flash'] = function ($c) {
     return new \Slim\Flash\Messages();
 };
-
 $container['validator'] = function ($c) {
     return new \App\Validation\Validator;
 };
@@ -82,6 +81,9 @@ $container['view'] = function ($c) {
 */
 $container['HomeController'] = function ($container) {
     return new \App\Controllers\HomeController($container);
+};
+$container['CrudController'] = function ($container) {
+    return new \App\Controllers\CrudController($container);
 };
 $container['AuthController'] = function ($container) {
     return new \App\Controllers\AuthController($container);
