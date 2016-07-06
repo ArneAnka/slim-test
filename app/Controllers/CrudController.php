@@ -11,7 +11,7 @@ class CrudController extends Controller
     * @return view
     */
     public function index(Request $request, Response $response){
-		$query = $this->pdo->from('notes')->orderBy('created_at DESC');
+		$query = $this->pdo->from('notes')->where('soft_delete', null)->orderBy('created_at DESC');
 
 		return $this->view->render($response, 'crud.twig', ['querys' => $query]);
     }
@@ -112,7 +112,9 @@ class CrudController extends Controller
     public function deleteCrud(Request $request, Response $response, $args){
     	$this->flash->addMessage('info', 'Note deleted');
     	
-		$query = $this->pdo->deleteFrom('notes')->where('note_id', $args['id'])->execute();
+    	// Dont use soft delete? Uncomment line under, and comment line under.
+		// $query = $this->pdo->deleteFrom('notes')->where('note_id', $args['id'])->execute();
+		$query = $this->pdo->update('notes')->set('soft_delete', 1)->where('note_id', $args['id'])->execute();
 
 		return $response->withRedirect($this->router->pathFor('crud'));
     }

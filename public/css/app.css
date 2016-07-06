@@ -1,10 +1,14 @@
 body {
     padding-left: 10px;
     background-color: #EDB766;
+    -webkit-font-smoothing: antialiased;
 }
+
 .navigation{
 	margin-bottom: 20px;
+	text-shadow: 3px 3px 2px #888888;
 }
+
 .box{
 	padding: 10px;
 	padding-top: 0px;

@@ -3,6 +3,7 @@ CREATE TABLE `notes` (
 	`user_id`	TEXT,
 	`text`	TEXT,
 	`ip_adress`	TEXT,
+	`soft_delete` INTEGER DEFAULT NULL,
 	`created_at`	TEXT,
 	`updated_at`	TEXT
 );

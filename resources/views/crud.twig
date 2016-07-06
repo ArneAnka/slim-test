@@ -5,7 +5,7 @@
 <div class="box">
 
 	{% include 'partials/flash.twig' %}
-	<h2>Insert message into DB <small>(should be signed in area)</small></h2>
+	<h1>Insert message into DB <small>(should be signed in area)</small></h1>
 	<p>(the name should ofc be the name the user signed up with)</p>
 
 	<form method="POST" action="{{ path_for('new') }}">
@@ -21,6 +21,9 @@
 	    	    <span class="help-block" style="color:#f20000">{{ errors.text | first }}</span><br>
 	    	{% endif %}<br>
 		<textarea name="text" placeholder="text" rows="6" cols="60">{{ old.text }}</textarea><br>
+
+		{{ csrf.field | raw }}
+
 		<input type="submit" value="Send">
 	</form>
 	  

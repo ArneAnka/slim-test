@@ -12,6 +12,9 @@
 	<textarea name="text" rows="5" cols="50">{{ query.text }}</textarea><br>
 	<input type="hidden" name="note_id" value="{{ query.note_id }}">
 	<input type="hidden" name="_METHOD" value="PUT">
+
+		{{ csrf.field | raw }}
+
 	<input type="submit" value="submit">
 </form>
 
