@@ -17,7 +17,7 @@ require 'vendor/autoload.php';
 */
 $config['determineRouteBeforeAppMiddleware'] = false;
 $config['displayErrorDetails'] = true;
-$config['addContentLengthHeader'] = true;
+$config['addContentLengthHeader'] = false;
 
 $config['db']['host']   = "localhost";
 $config['db']['user']   = "user";
@@ -51,6 +51,9 @@ $container['flash'] = function ($c) {
 $container['validator'] = function ($c) {
     return new \App\Validation\Validator;
 };
+$container['csrf'] = function ($c) {
+    return new \Slim\Csrf\Guard;
+};
 
 /**
 * Middleware
@@ -60,6 +63,8 @@ $app->add(new App\Middleware\ValidationErrorsMiddleware($container));
 $checkProxyHeaders = true; // Note: Never trust the IP address for security processes!
 $trustedProxies = ['10.0.0.1', '10.0.0.2']; // Note: Never trust the IP address for security processes!
 $app->add(new RKA\Middleware\IpAddress($checkProxyHeaders, $trustedProxies));
+$app->add(new App\Middleware\CsrfViewMiddleware($container));
+$app->add($container->get('csrf'));
 
 
 /**

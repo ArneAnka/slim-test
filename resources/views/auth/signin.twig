@@ -8,7 +8,7 @@
 		{% if errors.user_email %}
 		    <span class="help-block" style="color:#f20000">{{ errors.user_email | first }}</span><br>
 		{% endif %}
-	<input type="email" name="user_email"><br>
+	<input type="email" name="user_email" placeholder="you@domain.com"><br>
 
 	<label>Password</label><br>
 		{% if errors.user_password %}
@@ -16,6 +16,9 @@
 		{% endif %}
 	<input type="password" name="user_password"><br>
 	<input type="hidden" name="op" value="reg">
+	
+	{{ csrf.field | raw }}
+	
 	<input type="submit" value="Submit">
 </form>
 
