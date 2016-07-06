@@ -1,12 +1,10 @@
- {% if flash.getMessages %}
-	{% if flash.getMessages('warning') %}
-		<span class="help-block" style="color:#f20000">{{ flash.getMessage('warning') | first }}</span>
+	{% if flash.getMessage('warning') %}
+		<p class="help-block" style="color:#f20000">{{ flash.getMessage('warning') | last }}</p>
 	{% endif %}
-	{% if flash.getMessages('success') %}
-		<span class="help-block" style="color:#00f200">{{ flash.getMessage('success') | first }}</span>
+	{% if flash.getMessage('success') %}
+		<img src="{{ base_url() }}/images/thumbs.jpg"><br>
+		<p class="help-block" style="color:#00f200">{{ flash.getMessage('success') | last }}</p>
 	{% endif %}
-	{% if flash.getMessages('info') %}
-		<span class="help-block" style="color:#1200f6">{{ flash.getMessage('info') | first }}</span>
+	{% if flash.getMessage('info') %}
+		<p class="help-block" style="color:#1200f6">{{ flash.getMessage('info') | last }}</p>
 	{% endif %}
-{% endif %}
-

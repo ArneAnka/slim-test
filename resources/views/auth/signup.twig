@@ -4,7 +4,7 @@
 {% block content %}
 <div class="box">
 	<h1>Sign-up</h1>
-	<form method="POST" action="{{ path_for('signup.post') }}">
+	<form method="POST" action="{{ path_for('signup.post') }}" class="form">
 		<label for="user_name">Username</label><br>
 				{% if errors.user_name %}
 		    	    <span class="help-block" style="color:#f20000">{{ errors.user_name | first }}</span><br>
@@ -24,10 +24,10 @@
 		<input type="password" id="user_password" name="user_password"><br>
 
 		<label for="user_password_confirm">Password again</label><br>
-				{% if errors.user_password %}
-		    	    <span class="help-block" style="color:#f20000">{{ errors.user_password | first }}</span><br>
+				{% if errors.user_password_confirm %}
+		    	    <span class="help-block" style="color:#f20000">{{ errors.user_password_confirm | first }}</span><br>
 		    	{% endif %}
-		<input type="password" id="user_password_confirm" name="user_password"><br>
+		<input type="password" id="user_password_confirm" name="user_password_confirm"><br>
 
 		<input type="hidden" name="op" value="reg">
 		

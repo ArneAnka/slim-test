@@ -5,7 +5,10 @@
 <div class="box">
 
 	{% include 'partials/flash.twig' %}
-	<h1>Insert message into DB <small>(should be signed in area)</small></h1>
+	<h1>Insert message into DB 
+		<small>(should be signed in area)</small>
+		<img class="" src="{{ base_url() }}/images/icon_exclamation.gif">
+	</h1>
 	<p>(the name should ofc be the name the user signed up with)</p>
 
 	<form method="POST" action="{{ path_for('new') }}">

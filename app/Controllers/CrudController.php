@@ -42,7 +42,6 @@ class CrudController extends Controller
 	        'text' => v::notEmpty(),
 	        'namn' => v::notEmpty()::alpha()
 	                ]);
-
 	    /**
 	    * If the fields fail, then redirect back to crud
 	    */

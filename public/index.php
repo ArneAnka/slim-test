@@ -54,6 +54,14 @@ $container['validator'] = function ($c) {
 $container['csrf'] = function ($c) {
     return new \Slim\Csrf\Guard;
 };
+/* wtf? Should I di this?*/
+$container['check'] = function ($c){
+    return \App\Models\Auth\check();
+};
+$container['user'] = function ($c){
+    return \App\Models\Auth\user();
+};
+/* /wtf */
 
 /**
 * Middleware

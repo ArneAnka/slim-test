@@ -84,9 +84,13 @@ class AuthController extends Controller
             'user_name' => v::noWhitespace()->notEmpty()->alpha(),
             'user_email' => v::noWhitespace()->notEmpty()->email(),
             'user_password' => v::noWhitespace()->notEmpty()->min(5, true),
+            'user_password_confirm'=> v::equals($data['user_password']),
             'op' => v::equals('reg'),
         ]);
 
+        /* make a new rule for it!
+        * Look here: https://github.com/ArneAnka/slim3/blob/master/app/Validation/Rules/EmailAvailable.php
+        */
         if($this->doesEmailAlreadyExist($data['user_email'])){
             return false;
         }
