@@ -5,3 +5,9 @@ body {
 .navigation{
 	margin-bottom: 20px;
 }
+.box{
+	padding: 10px;
+	padding-top: 0px;
+	border-style: dotted;
+	width: 60%;
+}

@@ -2,24 +2,29 @@
 {% block title %}sign-in{% endblock %}
 
 {% block content %}
-  
-<form method="POST" action="{{ path_for('signin.post') }}">
-	<label>Email</label><br>
-		{% if errors.user_email %}
-		    <span class="help-block" style="color:#f20000">{{ errors.user_email | first }}</span><br>
-		{% endif %}
-	<input type="email" name="user_email" placeholder="you@domain.com"><br>
+<div class="box">
+	<h1>Sign-in</h1>
+	<form method="POST" action="{{ path_for('signin.post') }}">
+		<label for="user_email">Email</label><br>
+			{% if errors.user_email %}
+			    <span class="help-block" style="color:#f20000">{{ errors.user_email | first }}</span><br>
+			{% endif %}
+		<input type="email" id="user_name" name="user_email" placeholder="you@domain.com"><br>
 
-	<label>Password</label><br>
-		{% if errors.user_password %}
-		    <span class="help-block" style="color:#f20000">{{ errors.user_password | first }}</span><br>
-		{% endif %}
-	<input type="password" name="user_password"><br>
-	<input type="hidden" name="op" value="reg">
-	
-	{{ csrf.field | raw }}
-	
-	<input type="submit" value="Submit">
-</form>
+		<label for="user_password">Password</label><br>
+			{% if errors.user_password %}
+			    <span class="help-block" style="color:#f20000">{{ errors.user_password | first }}</span><br>
+			{% endif %}
+		<input type="password" id="user_password" name="user_password"><br>
+		<input type="hidden" name="op" value="reg">
+		
+		{{ csrf.field | raw }}
+		
+		<input type="submit" value="Submit">
+	</form>
+
+	Don´t have an account?<br>
+	<a href="{{ path_for('signup') }}">Sign-up for one!</a>
+</div>
 
 {% endblock %}
