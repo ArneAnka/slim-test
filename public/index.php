@@ -1,4 +1,12 @@
 <?php
+/**
+* To help the built-in PHP dev server, check if the request was actually for
+* something which should probably be served as a static file
+**/
+if(PHP_SAPI === 'cli-server' && $_SERVER['SCRIPT_FILENAME'] !== __FILE__) {
+    return false;
+}
+
 // Start PHP session
 session_start();
 
@@ -7,8 +15,9 @@ require 'vendor/autoload.php';
 /**
 * configuration
 */
+$config['determineRouteBeforeAppMiddleware'] = false;
 $config['displayErrorDetails'] = true;
-$config['addContentLengthHeader'] = false;
+$config['addContentLengthHeader'] = true;
 
 $config['db']['host']   = "localhost";
 $config['db']['user']   = "user";

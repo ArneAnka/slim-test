@@ -83,7 +83,7 @@ class AuthController extends Controller
         $validation = $this->validator->validate($request, [
             'user_name' => v::noWhitespace()->notEmpty()->alpha(),
             'user_email' => v::noWhitespace()->notEmpty()->email(),
-            'user_password' => v::noWhitespace()->notEmpty(),
+            'user_password' => v::noWhitespace()->notEmpty()->min(5, true),
             'op' => v::equals('reg'),
         ]);
 

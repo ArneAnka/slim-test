@@ -5,7 +5,7 @@
 
 {% include 'partials/flash.twig' %}
 <h2>Insert message into DB <small>(should be signed in area)</small></h2>
-<p>The name should ofc be the name the user signed up with.</p>
+<p>(the name should ofc be the name the user signed up with)</p>
 
 <form method="POST" action="{{ path_for('new') }}">
 	<label>Name</label>
@@ -19,15 +19,22 @@
 		{% if errors.text %}
     	    <span class="help-block" style="color:#f20000">{{ errors.text | first }}</span><br>
     	{% endif %}<br>
-	<textarea name="text" placeholder="text" rows="5" cols="50">{{ old.text }}</textarea><br>
+	<textarea name="text" placeholder="text" rows="6" cols="60">{{ old.text }}</textarea><br>
 	<input type="submit" value="Send">
 </form>
   
 <div>
 {% if querys %}
 	{% for query in querys %}
-		<hr>
-		<div>ID#: {{ query.note_id }}, Name: {{ query.user_namn }}, Time: {{ diffForHumans(query.created_at) }}{% if query.updated_at %}, Edit: {{ diffForHumans(query.updated_at) }} {% endif %}</div>
+		<hr style="border-top: dotted 1px;" />
+		<div>
+			ID#: {{ query.note_id }}
+			Name: {{ query.user_namn }}
+			Time: <time class="timeago" datetime="{{ query.created_at }}"></time>
+			{% if query.updated_at %}
+				Edit: <time class="timeago" datetime="{{ query.updated_at }}"></time>
+			{% endif %}
+		</div>
 		<div>Content: {{ query.text }}</div>
 		<div>
 			<a href="{{ path_for('delete', {id: query.note_id}) }}">delete</a> - 

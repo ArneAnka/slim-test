@@ -1,5 +1,4 @@
 <?php
-
 namespace App\TwigExtension;
 
 class diffForHumans extends \Slim\Views\TwigExtension
