@@ -101,14 +101,17 @@ $container['view'] = function ($c) {
 /**
 * Attach controllers to $container
 */
-$container['HomeController'] = function ($container) {
-    return new \App\Controllers\HomeController($container);
+$container['HomeController'] = function ($c) {
+    return new \App\Controllers\HomeController($c);
 };
-$container['CrudController'] = function ($container) {
-    return new \App\Controllers\CrudController($container);
+$container['CrudController'] = function ($c) {
+    return new \App\Controllers\CrudController($c);
 };
-$container['AuthController'] = function ($container) {
-    return new \App\Controllers\AuthController($container);
+$container['AuthController'] = function ($c) {
+    return new \App\Controllers\AuthController($c);
+};
+$container['UserModel'] = function ($c) {
+    return new \App\Models\UserModel($c->pdo);
 };
 
 // Register routes

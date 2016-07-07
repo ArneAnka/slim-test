@@ -36,10 +36,10 @@
 			<div class="crud">
 				Post ID#: {{ query.note_id }}<br>
 				By: {{ query.user_namn }}<br>
-				Posted: <time class="timeago" datetime="{{ query.created_at }}"></time><br>
+				Posted: <time class="timeago" datetime="{{ query.created_at }}"></time>
 				{% if query.updated_at %}
-					Edited: <time class="timeago" datetime="{{ query.updated_at }}"></time><br>
-				{% endif %}
+					<i>Edited: <time class="timeago" datetime="{{ query.updated_at }}"></time></i>
+				{% endif %}<br>
 				Content: {{ query.text }}<br>
 				<a href="{{ path_for('delete', {id: query.note_id}) }}">delete</a> - 
 				<a href="{{ path_for('view', {id: query.note_id}) }}">edit</a>
