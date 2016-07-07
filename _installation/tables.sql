@@ -11,6 +11,7 @@ CREATE TABLE `notes` (
 CREATE TABLE `user` (
 	`user_id`	INTEGER PRIMARY KEY AUTOINCREMENT,
 	`user_namn`	TEXT,
+	`user_password_hash` TEXT,
 	`user_account_type` INTEGER,
 	`user_failed_logins` TEXT,
 	`user_last_failed_login` TEXT,

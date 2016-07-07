@@ -33,3 +33,9 @@ h1 {
   .toggle{
         display: inline;
   }
+  .crud{
+  	margin: 5px;
+  	padding: 5px;
+  	border-style: dotted;
+  	border-width: 1px;
+  }
