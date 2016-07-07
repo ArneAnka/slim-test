@@ -110,6 +110,9 @@ $container['CrudController'] = function ($c) {
 $container['AuthController'] = function ($c) {
     return new \App\Controllers\AuthController($c);
 };
+/**
+* Attach models
+*/
 $container['UserModel'] = function ($c) {
     return new \App\Models\UserModel($c->pdo);
 };
