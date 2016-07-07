@@ -38,6 +38,6 @@ $app->group('', function () {
     $this->get('/notes/deleteNote/{note_id:[0-9]+}', 'NoteController:deleteNote')->setName('delete.note');
 })->add(new AuthMiddleware($container));
 
-$app->get('/u/{username}', function ($request, $response) {
-	// Have a look at another users profile.
-});
+// $app->get('/u/{username}', function ($request, $response) {
+// 	// Have a look at another users profile.
+// });

@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-class Auth
+class AuthModel
 {
     /**
     * Return user ID.
-    *
-    * Fetch with $this->container->auth->check()
     *
     * @return mixed
     */

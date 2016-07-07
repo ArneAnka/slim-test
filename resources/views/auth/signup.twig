@@ -5,29 +5,23 @@
 <div class="box">
 	<h1>Sign-up</h1>
 	<form method="POST" action="{{ path_for('signup.post') }}" class="form">
-		<label for="user_name">Username</label><br>
+		<label for="user_name">Username</label>
 				{% if errors.user_name %}
-		    	    <span class="help-block" style="color:#f20000">{{ errors.user_name | first }}</span><br>
-		    	{% endif %}
-		<input type="text" id="user_name" name="user_name" value="{{ old.user_name }}" placeholder="choose a username"><br>
+		    	    <span class="help-block" style="color:#f20000">{{ errors.user_name | first }}</span>
+		    	{% endif %}<br>
+		<input type="text" id="user_name" name="user_name" value="{{ old.user_name }}" placeholder="choose a username" autocomplete="off"><br>
 
-		<label for="user_email">Email</label><br>
+		<label for="user_email">Email</label>
 				{% if errors.user_email %}
-		    	    <span class="help-block" style="color:#f20000">{{ errors.user_email | first }}</span><br>
-		    	{% endif %}
-		<input type="email" id="user_email" name="user_email" value="{{ old.user_email }}" placeholder="you@domain.com"><br>
+		    	    <span class="help-block" style="color:#f20000">{{ errors.user_email | first }}</span>
+		    	{% endif %}<br>
+		<input type="email" id="user_email" name="user_email" value="{{ old.user_email }}" placeholder="you@domain.com" autocomplete="off"><br>
 
-		<label for="user_password">Password</label><br>
+		<label for="user_password">Password</label>
 				{% if errors.user_password %}
-		    	    <span class="help-block" style="color:#f20000">{{ errors.user_password | first }}</span><br>
-		    	{% endif %}
-		<input type="password" id="user_password" name="user_password"><br>
-
-		<label for="user_password_confirm">Password again</label><br>
-				{% if errors.user_password_confirm %}
-		    	    <span class="help-block" style="color:#f20000">{{ errors.user_password_confirm | first }}</span><br>
-		    	{% endif %}
-		<input type="password" id="user_password_confirm" name="user_password_confirm"><br>
+		    	    <span class="help-block" style="color:#f20000">{{ errors.user_password | first }}</span>
+		    	{% endif %}<br>
+		<input type="password" id="user_password" name="user_password" autocomplete="off"><br>
 
 		<input type="hidden" name="op" value="reg">
 		
@@ -37,7 +31,7 @@
 	</form>
 	
 	Forgot your password?<br>
-	<a href="#">Recover your password here.</a>
+	<a href="#">Recover your password here!</a>
 
 </div>
 

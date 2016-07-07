@@ -5,17 +5,18 @@
 <div class="box">
 	<h1>Sign-in</h1>
 	<form method="POST" action="{{ path_for('signin.post') }}" class="form">
-		<label for="user_email">Email</label><br>
+		<label for="user_email">Email</label>
 			{% if errors.user_email %}
-			    <span class="help-block" style="color:#f20000">{{ errors.user_email | first }}</span><br>
-			{% endif %}
-		<input type="email" id="user_name" name="user_email" placeholder="you@domain.com"><br>
+			    <span class="help-block" style="color:#f20000">{{ errors.user_email | first }}</span>
+			{% endif %}<br>
+		<input type="email" id="user_name" name="user_email" placeholder="you@domain.com" autocomplete="off"><br>
 
-		<label for="user_password">Password</label><br>
+		<label for="user_password">Password</label>
 			{% if errors.user_password %}
-			    <span class="help-block" style="color:#f20000">{{ errors.user_password | first }}</span><br>
-			{% endif %}
-		<input type="password" id="user_password" name="user_password"><br>
+			    <span class="help-block" style="color:#f20000">{{ errors.user_password | first }}</span>
+			{% endif %}<br>
+		<input type="password" id="user_password" name="user_password" autocomplete="off"><br>
+
 		<input type="hidden" name="op" value="reg">
 		
 		{{ csrf.field | raw }}

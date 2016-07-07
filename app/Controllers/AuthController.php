@@ -38,8 +38,8 @@ class AuthController extends Controller
         * Check if the fields are valied. op is a hidden field. To prevent bots
         */
         $validation = $this->validator->validate($request, [
-            'user_email' => v::noWhitespace()->notEmpty()->email(),
-            'user_password' => v::noWhitespace()->notEmpty(),
+            'user_email' => v::noWhitespace()->notEmpty()->email()->setName('User email'),
+            'user_password' => v::noWhitespace()->notEmpty()->setName('Password'),
             'op' => v::equals('reg'),
         ]);
 
@@ -80,20 +80,14 @@ class AuthController extends Controller
         /**
         * Check if the fields are valied. op is a hidden field, to prevent bots
         */
-        $validation = $this->validator->validate($request, [
-            'user_name' => v::noWhitespace()->notEmpty()->alpha(),
-            'user_email' => v::noWhitespace()->notEmpty()->email(),
-            'user_password' => v::noWhitespace()->notEmpty()->min(5, true),
-            'user_password_confirm'=> v::equals($data['user_password']),
-            'op' => v::equals('reg'),
-        ]);
+        v::with('App\\Validation\\Rules\\');
 
-        /* make a new rule for it!
-        * Look here: https://github.com/ArneAnka/slim3/blob/master/app/Validation/Rules/EmailAvailable.php
-        */
-        if($this->doesEmailAlreadyExist($data['user_email'])){
-            return false;
-        }
+        $validation = $this->validator->validate($request, [
+            'user_name' => v::notEmpty()->noWhitespace()->alpha()->setName('User name'),
+            'user_email' => v::notEmpty()->noWhitespace()->email()->emailAvailable()->setName('User email'),
+            'user_password' => v::notEmpty()->length(5, null)->setName('Password'),
+            'op' => v::equals('reg')
+        ]);
 
         /**
         * If the fields fail, then redirect back to signup
@@ -130,12 +124,8 @@ class AuthController extends Controller
     * @return bool
     */
     public function doesEmailAlreadyExist($user_email){
-        $query = $this->pdo->from('users')->where('user_email', $user_email);
-        if($query->rowCount() == 1){
-            return false;
-        }
-        return true;
-        }
+        return $this->pdo->from('users')->where('user_email', $user_email);
+    }
 
     /**
     * @return Log out

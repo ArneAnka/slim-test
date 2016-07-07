@@ -12,18 +12,18 @@
 	<p>(the name should ofc be the name the user signed up with)</p>
 
 	<form method="POST" action="{{ path_for('new') }}">
-		<label>Name</label>
+		<label for="name">Name</label>
 		{# name ofc should be the signed-in user #}
 			{% if errors.namn %}
-	    	    <span class="help-block" style="color:#f20000">{{ errors.namn | first }}</span><br>
+	    	    <span class="help-block" style="color:#f20000">{{ errors.namn | first }}</span>
 	    	{% endif %}<br>
-		<input type="text" name="namn" placeholder="name" value="{{ old.namn }}" autocomplete="off"><br>
+		<input type="text" id="name" name="namn" placeholder="name" value="{{ old.namn }}" autocomplete="off"><br>
 
-		<label>Text</label>
+		<label for="textfield">Text</label>
 			{% if errors.text %}
-	    	    <span class="help-block" style="color:#f20000">{{ errors.text | first }}</span><br>
+	    	    <span class="help-block" style="color:#f20000">{{ errors.text | first }}</span>
 	    	{% endif %}<br>
-		<textarea name="text" placeholder="text" rows="6" cols="60">{{ old.text }}</textarea><br>
+		<textarea name="text" id="textfield" placeholder="text" rows="6" cols="60">{{ old.text }}</textarea><br>
 
 		{{ csrf.field | raw }}
 

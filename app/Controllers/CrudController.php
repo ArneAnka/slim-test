@@ -21,6 +21,7 @@ class CrudController extends Controller
     */
     public function getEditCrud(Request $request, Response $response, $args){
     	$query = $this->pdo->from('notes')->where('note_id', $args['id'])->fetch();
+
     	return $this->view->render($response, 'edit-crud.twig', ['query' => $query]);
     }
 
@@ -36,12 +37,14 @@ class CrudController extends Controller
 				   'ip_adress' => $request->getAttribute('ip_address')];
 
 	    /**
-	    * Check if the fields from form/post are valid
+	    * Check if the fields from form/post are valid.
+	    * Pass custom error message as a third argument to validate()
 	    */
 	    $validation = $this->validator->validate($request, [
-	        'text' => v::notEmpty(),
-	        'namn' => v::notEmpty()::alpha()
-	                ]);
+	        'namn' => v::notEmpty()::alpha()->setName('Name'),
+	       	'text' => v::notEmpty()->setName('Textfield')],
+	         ['alpha' => '{{name}} must contain only letters (a-z)',
+	         'notEmpty' => '{{name}} cannot be empty']);
 	    /**
 	    * If the fields fail, then redirect back to crud
 	    */
@@ -88,6 +91,15 @@ class CrudController extends Controller
 	        $this->flash->addMessage('warning', 'Please fill all fields.');
 
 	        return $response->withRedirect($this->router->pathFor('view', ['id' => $data['note_id']]));
+	    }
+
+	    /**
+	    * Check if the post actually has been alterd
+	    */
+	    if($this->pdo->from('notes')->where('note_id', $data['note_id'])->fetch('text') == $data['text']){
+	    	$this->flash->addMessage('warning', 'You dident alter anything...');
+
+	    	return $response->withRedirect($this->router->pathFor('view', ['id' => $data['note_id']]));
 	    }
 
 	    /**
