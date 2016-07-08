@@ -8,6 +8,6 @@ class EmailAvailable extends AbstractRule
 {
     public function validate($input)
     {
-        return $this->UserModel->doesEmailAlreadyExist($input);
+        return $this->User->doesEmailAlreadyExist($input);
     }
 }

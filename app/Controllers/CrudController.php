@@ -41,7 +41,7 @@ class CrudController extends Controller
 	    * Pass custom error message as a third argument to validate()
 	    */
 	    $validation = $this->validator->validate($request, [
-	        'namn' => v::notEmpty()::alpha()->setName('Name'),
+	        'namn' => v::notEmpty()->noWhitespace()->alpha()->setName('Name'),
 	       	'text' => v::notEmpty()->setName('Textfield')],
 	         ['alpha' => '{{name}} must contain only letters (a-z)',
 	         'notEmpty' => '{{name}} cannot be empty']);

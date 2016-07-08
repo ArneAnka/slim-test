@@ -7,7 +7,9 @@ if(PHP_SAPI === 'cli-server' && $_SERVER['SCRIPT_FILENAME'] !== __FILE__) {
     return false;
 }
 
-// Start PHP session
+/*
+* Start PHP session
+*/
 session_start();
 
 require 'vendor/autoload.php';
@@ -44,7 +46,9 @@ $container['pdo'] = function ($c) {
     return $fpdo;
 };
 
-// Register provider
+/**
+* Register provider
+*/
 $container['flash'] = function ($c) {
     return new \Slim\Flash\Messages();
 };
@@ -103,13 +107,15 @@ $container['AuthController'] = function ($c) {
     return new \App\Controllers\AuthController($c);
 };
 /**
-* Attach models
+* Attach models. Notice that only PDO instance is injected
 */
-$container['UserModel'] = function ($c) {
+$container['User'] = function ($c) {
     return new \App\Models\UserModel($c->pdo);
 };
 
-// Register routes
+/*
+* Register routes
+*/
 require __DIR__ . '/../app/routes.php';
 
 $app->run();

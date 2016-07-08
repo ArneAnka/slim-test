@@ -80,14 +80,13 @@ class AuthController extends Controller
         /**
         * Check if the fields are valied. op is a hidden field, to prevent bots
         */
-        // v::with('App\\Validation\\Rules\\');
+        v::with('App\\Validation\\Rules\\');
 
-        $emailAvailable = $this->UserModel->doesEmailAlreadyExist($data['user_email']);
+        // $emailAvailable = $this->UserModel->doesEmailAlreadyExist($data['user_email']);
 
         $validation = $this->validator->validate($request, [
             'user_name' => v::notEmpty()->noWhitespace()->alpha()->setName('User name'),
-            // 'user_email' => v::notEmpty()->noWhitespace()->email()->emailAvailable()->setName('User email'),
-            'user_email' => v::notEmpty()->noWhitespace()->email()->attribute($emailAvailable)->setName('User email'),
+            'user_email' => v::notEmpty()->noWhitespace()->email()->emailAvailable()->setName('User email'),
             'user_password' => v::notEmpty()->length(5, null)->setName('Password'),
             'op' => v::equals('reg')
         ]);

@@ -34,13 +34,12 @@
 	{% if querys %}
 		{% for query in querys %}
 			<div class="crud">
-				Post ID#: {{ query.note_id }}<br>
-				By: {{ query.user_namn }}<br>
-				Posted: <time class="timeago" datetime="{{ query.created_at }}"></time>
+				<span style="display: none;">{{ query.note_id }}</span>
+				{{ query.user_namn }} <small><time class="timeago" datetime="{{ query.created_at }}"></time></small>
 				{% if query.updated_at %}
-					<i>Edited: <time class="timeago" datetime="{{ query.updated_at }}"></time></i>
+					<small><i>edited <time class="timeago" datetime="{{ query.updated_at }}"></time></i></small>
 				{% endif %}<br>
-				Content: {{ query.text }}<br>
+				{{ query.text }}<br>
 				<a href="{{ path_for('delete', {id: query.note_id}) }}">delete</a> - 
 				<a href="{{ path_for('view', {id: query.note_id}) }}">edit</a>
 			</div>
