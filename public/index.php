@@ -36,8 +36,8 @@ $container = $app->getContainer();
 * FluentPDO Database DI
 * For MariaDB or mysql, you need username and password
 */
-$container['pdo'] = function ($container) {
-    $settings = $container->get('settings');
+$container['pdo'] = function ($c) {
+    $settings = $c->get('settings');
     $dsn = 'sqlite:' . $settings['db']['database'];
     $pdo = new PDO($dsn);
     $fpdo = new FluentPDO($pdo);
@@ -54,14 +54,6 @@ $container['validator'] = function ($c) {
 $container['csrf'] = function ($c) {
     return new \Slim\Csrf\Guard;
 };
-/* wtf? Should I di this?*/
-$container['check'] = function ($c){
-    return \App\Models\Auth\check();
-};
-$container['user'] = function ($c){
-    return \App\Models\Auth\user();
-};
-/* /wtf */
 
 /**
 * Middleware

@@ -21,13 +21,13 @@
 				{% if errors.user_password %}
 		    	    <span class="help-block" style="color:#f20000">{{ errors.user_password | first }}</span>
 		    	{% endif %}<br>
-		<input type="password" id="user_password" name="user_password" autocomplete="off"><br>
+		<input type="password" id="user_password" name="user_password" placeholder="password" autocomplete="off"><br>
 
 		<input type="hidden" name="op" value="reg">
 		
 		{{ csrf.field | raw }}
 
-		<input type="submit" value="submit">
+		<input type="submit" value="Sign-up">
 	</form>
 	
 	Forgot your password?<br>

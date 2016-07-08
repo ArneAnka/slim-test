@@ -23,11 +23,11 @@
 			{% if errors.text %}
 	    	    <span class="help-block" style="color:#f20000">{{ errors.text | first }}</span>
 	    	{% endif %}<br>
-		<textarea name="text" id="textfield" placeholder="text" rows="6" cols="60">{{ old.text }}</textarea><br>
+		<textarea name="text" id="textfield" placeholder="save your note here" rows="6" cols="60">{{ old.text }}</textarea><br>
 
 		{{ csrf.field | raw }}
 
-		<input type="submit" value="Send">
+		<input type="submit" value="Save">
 	</form>
 	  
 	<div>

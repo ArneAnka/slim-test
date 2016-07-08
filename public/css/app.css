@@ -73,3 +73,12 @@ input[type=button], input[type=submit], input[type=reset] {
     cursor: pointer;
     font-size: 15px;
 }
+
+img {
+  margin-top: 5px;
+}
+
+img.ferrari {
+  margin-top: 5px;
+  border-style: double;
+  }
